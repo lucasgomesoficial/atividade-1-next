@@ -1,0 +1,23 @@
+{
+  "tags": {
+    "allowUnknownTags": true
+  },
+  "plugins": ["node_modules/better-docs/typescript"],
+  "source": {
+    "include": ["src", "src/components"],
+    "includePattern": ".+\\.(js|jsx|ts|tsx)$",
+    "excludePattern": "(^|\\/|\\\\)_"
+  },
+  "opts": {
+    "encoding": "utf8",
+    "destination": "./docs",
+    "recurse": true,
+    "verbose": true,
+    "template": "node_modules/better-docs"
+  },
+  "templates": {
+    "better-docs": {
+      "name": "My Project Documentation"
+    }
+  }
+}

@@ -10,6 +10,16 @@ import { IApp } from "../types";
 import { Label } from "@/components/ui/label";
 import { Form } from "@/components/form/index.component";
 
+/**
+ * This is the main App component that displays the user's submitted form data.
+ *
+ * @param formData - An object containing the user's form data.
+ * @param handleSubmit - A function to handle form submission.
+ * @param onSubmit - A function to be called when the form is submitted.
+ * @param control - The form control object.
+ *
+ * @returns A React component that displays the user's form data.
+ */
 export default function App({
   formData,
   handleSubmit,

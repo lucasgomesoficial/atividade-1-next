@@ -55,6 +55,16 @@ const TextareaField = ({
   );
 };
 
+/**
+ * A form component that renders an input field or a textarea based on the provided props.
+ * It uses react-hook-form's Controller component to handle form state and validation.
+ *
+ * @param control - The react-hook-form control object.
+ * @param name - The name of the input field or textarea.
+ * @param hasTextArea - A boolean indicating whether to render a textarea instead of an input field.
+ *
+ * @returns A JSX element representing the input form.
+ */
 export function InputForm({
   control,
   name,

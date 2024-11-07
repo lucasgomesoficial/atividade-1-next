@@ -16,6 +16,12 @@ import { Controller } from "react-hook-form";
 import { IDatePicker } from "./types";
 import { Label } from "../ui/label";
 
+/**
+ * A date picker component for selecting a single date.
+ *
+ * @param control - The React Hook Form control object for managing form state.
+ * @returns A React component for rendering the date picker.
+ */
 export function DatePicker({ control }: Readonly<IDatePicker>) {
   return (
     <Controller
