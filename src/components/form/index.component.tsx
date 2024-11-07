@@ -11,6 +11,18 @@ import {
 } from "../ui/sheet";
 import { IForm } from "./types";
 
+/**
+ * @method
+ * @name Form
+ *
+ * @description A form for the user to fill out.
+ *
+ * @param handleSubmit - A function to handle form submission.
+ * @param onSubmit - A function to be called when the form is submitted.
+ * @param control - The form control object.
+ *
+ * @returns A React component for rendering the form.
+ */
 export const Form = ({ handleSubmit, onSubmit, control }: IForm) => {
   return (
     <Sheet>

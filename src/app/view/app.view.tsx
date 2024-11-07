@@ -11,7 +11,10 @@ import { Label } from "@/components/ui/label";
 import { Form } from "@/components/form/index.component";
 
 /**
- * This is the main App component that displays the user's submitted form data.
+ * @module
+ *
+ * @name App
+ * @description This is the main App component that displays the user's submitted form data.
  *
  * @param formData - An object containing the user's form data.
  * @param handleSubmit - A function to handle form submission.

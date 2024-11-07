@@ -7,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> components/input-form/index.component.tsx</title>
+  <title> components/form/index.component.tsx</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -80,7 +80,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Source</p>
-                    <h1>components/input-form/index.component.tsx</h1>
+                    <h1>components/form/index.component.tsx</h1>
                 </header>
                 
 
@@ -89,108 +89,58 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>"use client";
-
-import { Controller } from "react-hook-form";
-import { Input } from "../ui/input";
-import { Textarea } from "../ui/textarea";
-import { IInputForm, InputFieldProps, TextareaFieldProps } from "./types";
-import { Label } from "../ui/label";
-import { formatNameField } from "@/utils/format-name-field/index.utils";
-
-const InputField = ({
-  name,
-  value,
-  onBlur,
-  onChange,
-  error,
-}: InputFieldProps) => {
-  return (
-    &lt;div>
-      &lt;Label htmlFor={name} className={error &amp;&amp; "text-destructive"}>
-        {formatNameField(name)}
-      &lt;/Label>
-      &lt;Input
-        id={name}
-        type={name === "email" ? "email" : "text"}
-        value={value}
-        onBlur={onBlur}
-        color="#f51b0c54"
-        onChange={onChange}
-      />
-      {error ?? &lt;span className="text-xs text-destructive">{error}&lt;/span>}
-    &lt;/div>
-  );
-};
-
-const TextareaField = ({
-  value,
-  onBlur,
-  onChange,
-  error,
-}: TextareaFieldProps) => {
-  return (
-    &lt;div>
-      &lt;Label htmlFor="bio" className={error &amp;&amp; "text-destructive"}>
-        Bio
-      &lt;/Label>
-      &lt;Textarea
-        id="bio"
-        rows={4}
-        value={value}
-        onBlur={onBlur}
-        onChange={onChange}
-      />
-      {error ?? &lt;span className="text-xs text-destructive">{error}&lt;/span>}
-    &lt;/div>
-  );
-};
+            <pre class="prettyprint source linenums"><code>import { DatePicker } from "../date-picker/index.component";
+import { InputForm } from "../input-form/index.component";
+import { Button } from "../ui/button";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "../ui/sheet";
+import { IForm } from "./types";
 
 /**
- * A form component that renders an input field or a textarea based on the provided props.
- * It uses react-hook-form's Controller component to handle form state and validation.
+ * @method
+ * @name Form
  *
- * @param control - The react-hook-form control object.
- * @param name - The name of the input field or textarea.
- * @param hasTextArea - A boolean indicating whether to render a textarea instead of an input field.
+ * @description A form for the user to fill out.
  *
- * @returns A JSX element representing the input form.
+ * @param handleSubmit - A function to handle form submission.
+ * @param onSubmit - A function to be called when the form is submitted.
+ * @param control - The form control object.
+ *
+ * @returns A React component for rendering the form.
  */
-export function InputForm({
-  control,
-  name,
-  hasTextArea,
-}: Readonly&lt;IInputForm>) {
+export const Form = ({ handleSubmit, onSubmit, control }: IForm) => {
   return (
-    &lt;Controller
-      control={control}
-      name={name}
-      render={({
-        field: { onChange, onBlur, value },
-        formState: { errors },
-      }) => (
-        &lt;>
-          {hasTextArea ? (
-            &lt;TextareaField
-              value={value}
-              onBlur={onBlur}
-              onChange={onChange}
-              error={errors.bio?.message}
-            />
-          ) : (
-            &lt;InputField
-              name={name}
-              value={value}
-              onBlur={onBlur}
-              onChange={onChange}
-              error={errors[name]?.message}
-            />
-          )}
-        &lt;/>
-      )}
-    />
+    &lt;Sheet>
+      &lt;SheetTrigger asChild>
+        &lt;Button>Editar&lt;/Button>
+      &lt;/SheetTrigger>
+      &lt;SheetContent>
+        &lt;SheetHeader>
+          &lt;SheetTitle>Formulário de Perfil&lt;/SheetTitle>
+          &lt;SheetDescription>
+            Preencha os campos abaixo para atualizar seu perfil.
+          &lt;/SheetDescription>
+        &lt;/SheetHeader>
+        &lt;form onSubmit={handleSubmit(onSubmit)} className="space-y-4 mt-4">
+          &lt;InputForm control={control} name="name" />
+          &lt;DatePicker control={control} />
+          &lt;InputForm control={control} name="username" />
+          &lt;InputForm control={control} name="email" />
+          &lt;InputForm control={control} name="bio" hasTextArea />
+          &lt;div className="flex justify-end">
+            &lt;Button type="submit">Enviar&lt;/Button>
+          &lt;/div>
+        &lt;/form>
+      &lt;/SheetContent>
+    &lt;/Sheet>
   );
-}
+};
 </code></pre>
         </article>
     </section>
